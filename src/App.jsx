@@ -8,7 +8,7 @@ import {
 } from "react-router-dom"
 
 import Register from './components/Register';
-import Posts from "./components/PostsView";
+import Posts from "./components/posts/PostsView";
 import Footer from "./components/Footer";
 import { fetchMe } from './api/auth';
 

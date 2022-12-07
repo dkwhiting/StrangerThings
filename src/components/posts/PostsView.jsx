@@ -1,7 +1,7 @@
-import "../Posts.css";
+import "./Posts.css";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { fetchPosts } from "../api/posts";
+import { fetchPosts } from "../../api/posts";
 import NewPost from './NewPost'
 import UserPosts from "./UserPosts";
 import AllPosts from "./AllPosts";
@@ -11,8 +11,6 @@ const Posts = ({ token }) => {
   const [posts, setPosts] = useState([])
   const [showAllPosts, setShowAllPosts] = useState(true)
   const [allPosts, setAllPosts] = useState([])
-  const [editVisible, setEditVisible] = useState(false)
-  const [currentEdit, setCurrentEdit] = useState(null)
 
   useEffect(() => {
     const getPosts = async () => {
@@ -23,7 +21,7 @@ const Posts = ({ token }) => {
     if (token) {
       getPosts();
     }
-  }, [token])
+  }, [token, allPosts])
 
   const dateDifference = (now, createdAt) => {
     const difference = (now - createdAt) / 1000 / 60 / 60;
@@ -36,22 +34,18 @@ const Posts = ({ token }) => {
     )
   }
 
-
-
   return (
     token
       ?
       <div className="container">
         <div className="posts-view">
           {
-            editVisible
-              ? <EditPost setEditVisible={setEditVisible} currentEdit={currentEdit} />
-              : showAllPosts
-                ? <AllPosts token={token} posts={posts} setShowAllPosts={setPosts} dateDifference={dateDifference} setAllPosts={setAllPosts} allPosts={allPosts} setPosts={setPosts} />
-                : <UserPosts token={token} posts={posts} setPosts={setPosts} dateDifference={dateDifference} setAllPosts={setAllPosts} />
+            showAllPosts
+              ? <AllPosts token={token} posts={posts} dateDifference={dateDifference} setAllPosts={setAllPosts} />
+              : <UserPosts token={token} posts={posts} dateDifference={dateDifference} setAllPosts={setAllPosts} />
           }
         </div>
-        <NewPost token={token} posts={posts} setPosts={setPosts} />
+        <NewPost token={token} posts={posts} setAllPosts={setAllPosts} />
       </div >
       : <></>
   )

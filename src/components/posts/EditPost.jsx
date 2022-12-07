@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { editPost } from "../api/posts";
+import { editPost } from "../../api/posts";
 
-const EditPost = ({ token, currentPost, setCurrentPost, setPosts, posts }) => {
+const EditPost = ({ token, currentPost, setCurrentPost, setAllPosts, posts }) => {
   const [currentTitle, setCurrentTitle] = useState(currentPost.title)
   const [currentDescription, setCurrentDescription] = useState(currentPost.description)
   const [currentPrice, setCurrentPrice] = useState(currentPost.price)
@@ -13,7 +13,7 @@ const EditPost = ({ token, currentPost, setCurrentPost, setPosts, posts }) => {
       event.preventDefault();
       let submitEdit = async () => {
         await editPost(token, currentPost._id, currentTitle, currentDescription, currentPrice)
-        await setPosts([...posts])
+        await setAllPosts([...posts])
         await setCurrentPost(null)
       }
       currentTitle == '' && currentDescription == '' ? console.log('Title and description can not be blank')

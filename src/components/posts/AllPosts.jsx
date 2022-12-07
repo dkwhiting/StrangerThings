@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { deletePost } from "../api/posts";
+import { deletePost } from "../../api/posts";
 import EditPost from "./EditPost";
 
-const AllPosts = ({ token, setPosts, posts, dateDifference }) => {
+const AllPosts = ({ token, setAllPosts, posts, dateDifference }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
 
-  const deleteHandler = async (event) => {
+  const deleteHandler = (event) => {
     event.preventDefault();
     const postId = event.target.className.split(' ')[2]
-    let deleteClick = await deletePost(token, postId)
-    setPosts = [...posts]
+    deletePost(token, postId)
+    setAllPosts([...posts])
   }
 
   return (
 
     <div className="all-posts">
       <h2>All Posts</h2>
-      {currentPost ? <EditPost token={token} currentPost={currentPost} setCurrentPost={setCurrentPost} setPosts={setPosts} posts={posts} /> : <></>}
+      {currentPost ? <EditPost token={token} currentPost={currentPost} setCurrentPost={setCurrentPost} setAllPosts={setAllPosts} posts={posts} /> : <></>}
       <div className="post-container">
         {
           posts.map(post => {

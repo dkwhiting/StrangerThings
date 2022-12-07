@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { newPost } from "../api/posts";
+import { newPost } from "../../api/posts";
 
-const NewPost = ({ token, posts, setPosts }) => {
+const NewPost = ({ token, posts, setAllPosts }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
@@ -9,10 +9,9 @@ const NewPost = ({ token, posts, setPosts }) => {
   const submitHandler = async (event) => {
     try {
       event.preventDefault();
-      console.log(token)
       let submitPost = async () => {
         await newPost(token, title, description, price)
-        setPosts([...posts])
+        setAllPosts([...posts])
       }
       title == '' && description == '' ? console.log('Title and description can not be blank')
         : title == '' ? console.log('Title can not be blank')
