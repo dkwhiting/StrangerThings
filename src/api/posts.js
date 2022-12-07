@@ -52,3 +52,26 @@ export const deletePost = async (token, postId) => {
 
   }
 }
+
+export const editPost = async (token, postId, title, description, price, location, willDeliver) => {
+  try {
+    let response = await fetch(`${APIURL}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+          location,
+          willDeliver,
+        }
+      })
+    })
+  } catch (error) {
+
+  }
+}

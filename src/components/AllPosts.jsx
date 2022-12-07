@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { deletePost } from "../api/posts";
+import EditPost from "./EditPost";
 
-const AllPosts = ({ posts, dateDifference }) => {
+const AllPosts = ({ token, setPosts, posts, dateDifference }) => {
+  const [currentPost, setCurrentPost] = useState(null)
 
+
+  const deleteHandler = async (event) => {
+    event.preventDefault();
+    const postId = event.target.className.split(' ')[2]
+    let deleteClick = await deletePost(token, postId)
+    setPosts = [...posts]
+  }
 
   return (
+
     <div className="all-posts">
       <h2>All Posts</h2>
+      {currentPost ? <EditPost token={token} currentPost={currentPost} setCurrentPost={setCurrentPost} setPosts={setPosts} posts={posts} /> : <></>}
       <div className="post-container">
         {
           posts.map(post => {
@@ -16,7 +28,12 @@ const AllPosts = ({ posts, dateDifference }) => {
               <div className="single-post" key={post._id}>
                 <div className="post-header">
                   <div className="post-user">{post.author.username}</div>
-                  {post.isAuthor ? <div><button><i className="fa-solid fa-pen-to-square"></i></button><button><i className="fa-solid fa-trash-can"></i></button></div> : <></>}
+                  {post.isAuthor
+                    ? <div className="header-buttons">
+                      <i className={`fa-solid fa-pen-to-square ${post._id}`} onClick={() => { setCurrentPost(post) }}></i>
+                      <i className={`fa-solid fa-trash-can ${post._id}`} onClick={deleteHandler}></i>
+                    </div>
+                    : <></>}
                 </div>
                 <div className="post-time">{dateDifference(todaysDate, createdAt)}</div>
                 <div className="post-title">{post.title}</div>

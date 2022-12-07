@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import { newPost } from "../api/posts";
 
-const NewPost = () => {
+const NewPost = ({ token, posts, setPosts }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
 
   const submitHandler = async (event) => {
-    event.preventDefault();
-    let submitPost = async () => {
-      await newPost(token, title, description, price)
+    try {
+      event.preventDefault();
+      console.log(token)
+      let submitPost = async () => {
+        await newPost(token, title, description, price)
+        setPosts([...posts])
+      }
+      title == '' && description == '' ? console.log('Title and description can not be blank')
+        : title == '' ? console.log('Title can not be blank')
+          : description == '' ? console.log('Description can not be blank')
+            : price == '' ? console.log('Price can not be blank')
+              : submitPost();
+    } catch (error) {
+      console.log(error)
     }
-    title != '' || description != ''
-      ? submitPost()
-      : console.log('Title and description must not be blank')
   }
 
   return (
