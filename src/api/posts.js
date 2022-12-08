@@ -49,7 +49,7 @@ export const deletePost = async (token, postId) => {
     })
 
   } catch (error) {
-
+    console.log(error)
   }
 }
 
@@ -72,6 +72,27 @@ export const editPost = async (token, postId, title, description, price, locatio
       })
     })
   } catch (error) {
+    console.log(error)
+  }
+}
 
+export const postMessage = async (token, postId, content) => {
+  try {
+    const response = await fetch(`${APIURL}/posts/${postId}/messages`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: {
+          content
+        }
+      })
+    })
+    const data = response.json()
+    console.log(data)
+  } catch (error) {
+    console.log(error)
   }
 }

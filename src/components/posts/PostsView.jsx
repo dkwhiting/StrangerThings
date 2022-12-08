@@ -12,27 +12,18 @@ const Posts = ({ token }) => {
   const [showAllPosts, setShowAllPosts] = useState(true)
   const [allPosts, setAllPosts] = useState([])
 
+
   useEffect(() => {
     const getPosts = async () => {
       const data = await fetchPosts(token);
       setPosts(data.data.posts);
-      console.log(posts)
     }
     if (token) {
       getPosts();
     }
   }, [token, allPosts])
 
-  const dateDifference = (now, createdAt) => {
-    const difference = (now - createdAt) / 1000 / 60 / 60;
-    return (
-      difference < 1 ? `${Math.floor(difference * 60)} minutes ago`
-        : difference < 2 ? `${Math.floor(difference)} hour ago`
-          : difference < 24 ? `${Math.floor(difference)} hours ago`
-            : difference < 48 ? `${Math.floor(difference / 24)} day ago`
-              : 'days ago'
-    )
-  }
+
 
   return (
     token
@@ -41,8 +32,16 @@ const Posts = ({ token }) => {
         <div className="posts-view">
           {
             showAllPosts
-              ? <AllPosts token={token} posts={posts} dateDifference={dateDifference} setAllPosts={setAllPosts} />
-              : <UserPosts token={token} posts={posts} dateDifference={dateDifference} setAllPosts={setAllPosts} />
+              ? <AllPosts
+                token={token}
+                posts={posts}
+                setAllPosts={setAllPosts}
+                setShowAllPosts={setShowAllPosts} />
+              : <UserPosts
+                token={token}
+                posts={posts}
+                setAllPosts={setAllPosts}
+                setShowAllPosts={setShowAllPosts} />
           }
         </div>
         <NewPost token={token} posts={posts} setAllPosts={setAllPosts} />

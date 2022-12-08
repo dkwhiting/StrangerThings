@@ -36,6 +36,11 @@
   flex: 1 1 auto;
 }
 
+.single-post a:hover {
+  color: red;
+  cursor: pointer;
+}
+
 .post-header {
   width: 100%;
   display: flex;
