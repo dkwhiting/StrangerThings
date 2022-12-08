@@ -90,7 +90,8 @@ export const postMessage = async (token, postId, content) => {
         }
       })
     })
-    const data = response.json()
+    const data = await response.json()
+    console.log(data)
   } catch (error) {
     console.log(error)
   }

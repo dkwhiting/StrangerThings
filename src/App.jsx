@@ -47,7 +47,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="profile" element={<Profile token={token} />} />
-            <Route path="messages" element={<Messages token={token} />} />
+            <Route path="messages" element={<Messages token={token} user={user} />} />
             <Route path="posts" element={<PostsView token={token} />} />
 
           </Routes>

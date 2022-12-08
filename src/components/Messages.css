@@ -1,0 +1,35 @@
+.messages {
+  background-color: lightgray;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.messages-header {
+  display: flex;
+  justify-content: center;
+}
+
+.all-messages {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+
+.single-message {
+  display: flex;
+  border: 1px black solid;
+  margin-top: -1px;
+
+}
+
+.message-username {
+  width: 125px;
+  text-align: left;
+}
+
+.single-message:hover {
+  box-shadow: 0px 0px 4px black;
+}
