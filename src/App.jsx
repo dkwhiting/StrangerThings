@@ -1,15 +1,20 @@
 import "./App.css";
 import React, { useState, useEffect } from 'react';
 import {
-  createBrowserRouter as Router,
+  BrowserRouter as Router,
   RouterProvider,
   Route,
+  Routes,
   Link,
 } from "react-router-dom"
 
 import Register from './components/Register';
-import Posts from "./components/posts/PostsView";
+import Home from './components/Home'
+import Profile from './components/Profile'
+import PostsView from "./components/posts/PostsView";
+import Messages from "./components/Messages";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import { fetchMe } from './api/auth';
 
 function App() {
@@ -27,21 +32,32 @@ function App() {
   }, [token])
 
   return (
-    <div className="App">
-      <header>
-        <h2>Logo</h2>
-        {token
-          ? <h2>Welcome, {user?.username}</h2>
-          : <Register token={token} setToken={setToken} />}
-      </header>
-      <main>
+    <Router>
+      <div className="App">
 
-        <Posts token={token} />
-      </main>
-      <footer>
-        <Footer setUser={setUser} setToken={setToken} />
-      </footer>
-    </div>
+        <div className="header">
+          <h2>Logo</h2>
+          {token
+            ? <h2>Welcome, {user?.username}</h2>
+            : <Register token={token} setToken={setToken} />}
+        </div>
+        <Navbar />
+
+        <div className="content">
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="profile" element={<Profile token={token} />} />
+            <Route path="messages" element={<Messages token={token} />} />
+            <Route path="posts" element={<PostsView token={token} />} />
+
+          </Routes>
+        </div>
+
+        <div className="footer">
+          <Footer setUser={setUser} setToken={setToken} />
+        </div>
+      </div>
+    </Router>
   )
 }
 

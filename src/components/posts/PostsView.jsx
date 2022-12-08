@@ -1,5 +1,6 @@
 import "./Posts.css";
 import React, { useState } from "react";
+import { Route } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchPosts } from "../../api/posts";
 import NewPost from './NewPost'
@@ -7,7 +8,7 @@ import UserPosts from "./UserPosts";
 import AllPosts from "./AllPosts";
 import EditPost from "./EditPost";
 
-const Posts = ({ token }) => {
+const PostsView = ({ token }) => {
   const [posts, setPosts] = useState([])
   const [showAllPosts, setShowAllPosts] = useState(true)
   const [allPosts, setAllPosts] = useState([])
@@ -50,4 +51,4 @@ const Posts = ({ token }) => {
   )
 }
 
-export default Posts;
+export default PostsView;

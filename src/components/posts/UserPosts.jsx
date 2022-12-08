@@ -7,7 +7,7 @@ const UserPosts = ({ token, setAllPosts, posts, setShowAllPosts }) => {
 
   return (
     <div className="all-posts">
-      <h2>All Posts</h2>
+      <h2>Your Posts</h2>
       <button className="view-changer" onClick={() => { setAllPosts([...posts]); setShowAllPosts(true) }}>All Posts</button>
       <button className="view-changer" onClick={() => { setAllPosts([...posts]); setShowAllPosts(false) }}>Your Posts</button>
       {
