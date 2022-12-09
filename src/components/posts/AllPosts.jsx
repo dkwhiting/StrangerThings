@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const AllPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
+const AllPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
   return (
@@ -30,7 +30,11 @@ const AllPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
                 post={post}
                 setCurrentPost={setCurrentPost}
                 setUpdater={setUpdater} updater={updater}
-                index={index} />
+                index={index}
+                favorite={favorite}
+                setFavorite={setFavorite}
+                postIndex={postIndex}
+                setPostIndex={setPostIndex} />
             )
           })
         }

@@ -3,12 +3,13 @@ import { postMessage, deletePost } from '../../api/posts';
 
 
 
-const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, index }) => {
+const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, index, favorite, setFavorite }) => {
   const [newMessage, setNewMessage] = useState('')
   const [currentMessages, setCurrentMessages] = useState(null)
   const [showNewMessage, setShowNewMessage] = useState(false)
   const [showMessages, setShowMessages] = useState(false)
-  const [favorite, setFavorite] = useState(localStorage.getItem(`${post._id}`))
+  // 
+
 
   const todaysDate = new Date()
   const createdAt = new Date(post.createdAt)
@@ -41,18 +42,38 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
       console.log('Can not send blank message')
     }
   }
+
   const reverseOrder = () => {
     return posts.length - index
   }
+
   const favoriteHandler = () => {
-    localStorage.getItem(`${post._id}`)
-      ? localStorage.removeItem(`${post._id}`)
-      : localStorage.setItem(`${post._id}`, 'favorite')
-
-    console.log(localStorage)
-    console.log(index)
-    console.log(posts.length)
-
+    // debugger
+    if (localStorage.getItem('favorites') && favorite && Object.keys(favorite).length > 0) {
+      setFavorite((JSON.parse(localStorage.getItem('favorites'))).favorites)
+      const copy = [...favorite]
+      if (copy.includes(post._id)) {
+        for (let i in copy) {
+          if (copy[i] === post._id) {
+            copy.splice(i, 1)
+            setFavorite(copy)
+            localStorage.setItem('favorites', JSON.stringify({ favorites: favorite }))
+            console.log('removed')
+          }
+        }
+      } else {
+        copy.push(post._id)
+        setFavorite(copy)
+        localStorage.setItem('favorites', JSON.stringify({ favorites: favorite }))
+        console.log('added')
+      }
+      setUpdater(!updater)
+    } else {
+      const obj = { favorites: [post._id] }
+      localStorage.setItem('favorites', JSON.stringify(obj))
+      setFavorite((JSON.parse(localStorage.getItem('favorites'))).favorites)
+      console.log('added')
+    }
   }
 
 
@@ -60,6 +81,7 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
   return (
     <div className="single-post" key={post._id} style={{ order: posts.length - index }}>
       <div className="post-header" >
+        <div className="post-user">{post._id}</div>
         <div className="post-user">{post.author.username}</div>
         {post.isAuthor
           ? <div className="header-buttons">
@@ -68,10 +90,11 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
           </div>
           : <div className="header-buttons">
             {
-              favorite
-                ? <i className="fa-solid fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
-                : <i className="fa-regular fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
+              favorite && favorite.includes(post._id)
+                ? <i className="fa-solid fa-star" onClick={favoriteHandler}></i>
+                : <i className="fa-regular fa-star" onClick={favoriteHandler}></i>
             }
+
           </div>}
       </div>
       <div className="post-time">{dateDifference(todaysDate, createdAt)}</div>
@@ -91,6 +114,8 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
             setShowNewMessage(!showNewMessage);
             setCurrentMessages(currentMessages == post._id ? null : post._id);
             setNewMessage('')
+            console.log('favorite: ', favorite)
+            console.log('postid: ', post._id)
           }}>Send Message</a></div>
 
       }

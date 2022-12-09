@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const FavoritePosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
+const FavoritePosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex }) => {
   const [currentPost, setCurrentPost] = useState(null)
-
   return (
     <div className="all-posts">
-      <h2>Your Posts</h2>
+      <h2>Favorite Posts</h2>
 
       {
         currentPost
@@ -21,8 +20,8 @@ const FavoritePosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) =
       }
       <div className="post-container">
         {
-          posts.filter((post) => post.isAuthor == true).length > 0
-            ? posts.filter((post) => post.isAuthor == true)
+          favorite && favorite.length > 0
+            ? posts.filter(post => favorite.includes(post._id))
               .map((post, index) => {
                 return (
                   <SinglePost
@@ -32,10 +31,15 @@ const FavoritePosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) =
                     post={post}
                     setCurrentPost={setCurrentPost}
                     setUpdater={setUpdater} updater={updater}
-                    index={index} />
+                    index={index}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                    postIndex={postIndex}
+                    setPostIndex={setPostIndex}
+                  />
                 )
               })
-            : <p>You have no posts!</p>
+            : <p>You have no favorites!</p>
         }
       </div>
     </div>

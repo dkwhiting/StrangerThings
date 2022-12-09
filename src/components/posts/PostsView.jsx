@@ -12,6 +12,13 @@ import FavoritePosts from "./FavoritePosts";
 const PostsView = ({ token }) => {
   const [posts, setPosts] = useState([])
   const [updater, setUpdater] = useState(true)
+  const [favorite, setFavorite] = useState(() => {
+    return localStorage.getItem('favorites')
+      ? JSON.parse(localStorage.getItem('favorites')).favorites
+      : []
+  }
+  )
+  const [postIndex, setPostIndex] = useState(null)
 
 
   useEffect(() => {
@@ -21,6 +28,8 @@ const PostsView = ({ token }) => {
     }
     if (token) {
       getPosts();
+
+
     }
   }, [token, updater])
 
@@ -40,15 +49,30 @@ const PostsView = ({ token }) => {
             <Route path="all" element={<AllPosts
               token={token}
               posts={posts}
-              setUpdater={setUpdater} updater={updater} />} />
+              setUpdater={setUpdater}
+              updater={updater}
+              favorite={favorite}
+              setFavorite={setFavorite}
+              postIndex={postIndex}
+              setPostIndex={setPostIndex} />} />
             <Route path="user" element={<UserPosts
               token={token}
               posts={posts}
-              setUpdater={setUpdater} updater={updater} />} />
+              setUpdater={setUpdater}
+              updater={updater}
+              favorite={favorite}
+              setFavorite={setFavorite}
+              postIndex={postIndex}
+              setPostIndex={setPostIndex} />} />
             <Route path="favorites" element={<FavoritePosts
               token={token}
               posts={posts}
-              setUpdater={setUpdater} updater={updater} />} />
+              setUpdater={setUpdater}
+              updater={updater}
+              favorite={favorite}
+              setFavorite={setFavorite}
+              postIndex={postIndex}
+              setPostIndex={setPostIndex} />} />
 
           </Routes>
         </div>

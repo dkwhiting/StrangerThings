@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const UserPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
+const UserPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
   return (
@@ -32,7 +32,11 @@ const UserPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
                     post={post}
                     setCurrentPost={setCurrentPost}
                     setUpdater={setUpdater} updater={updater}
-                    index={index} />
+                    index={index}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                    postIndex={postIndex}
+                    setPostIndex={setPostIndex} />
                 )
               })
             : <p>You have no posts!</p>
