@@ -3,33 +3,34 @@ import React, { useState } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const AllPosts = ({ token, setAllPosts, posts, setShowAllPosts }) => {
+const AllPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
   return (
     <div className="all-posts">
       <h2>All Posts</h2>
-      <button className="view-changer" onClick={() => { setAllPosts([...posts]); setShowAllPosts(true) }}>All Posts</button>
-      <button className="view-changer" onClick={() => { setAllPosts([...posts]); setShowAllPosts(false) }}>Your Posts</button>
+
       {
         currentPost
           ? <EditPost
             token={token}
             currentPost={currentPost}
             setCurrentPost={setCurrentPost}
-            setAllPosts={setAllPosts}
+            setUpdater={setUpdater} updater={updater}
             posts={posts} />
           : <></>}
       <div className="post-container">
         {
-          posts.map(post => {
+          posts.map((post, index) => {
             return (
               <SinglePost
+                key={post._id}
                 token={token}
                 posts={posts}
                 post={post}
                 setCurrentPost={setCurrentPost}
-                setAllPosts={setAllPosts} />
+                setUpdater={setUpdater} updater={updater}
+                index={index} />
             )
           })
         }

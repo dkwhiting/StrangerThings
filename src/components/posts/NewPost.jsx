@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { newPost } from "../../api/posts";
 
-const NewPost = ({ token, posts, setAllPosts }) => {
+const NewPost = ({ token, posts, setUpdater, updater }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
@@ -11,7 +11,7 @@ const NewPost = ({ token, posts, setAllPosts }) => {
       event.preventDefault();
       let submitPost = async () => {
         await newPost(token, title, description, price)
-        setAllPosts([...posts])
+        setUpdater(!updater)
       }
       title == '' && description == '' ? console.log('Title and description can not be blank')
         : title == '' ? console.log('Title can not be blank')
@@ -33,15 +33,16 @@ const NewPost = ({ token, posts, setAllPosts }) => {
             value={title}
             className="title"
             type="text"
-            onChange={(event) => setTitle(event.target.value)}></input><br />
+            onChange={(event) => setTitle(event.target.value)}></input>
         </div>
         <div className="form-container">
           <label htmlFor="description">Description</label>
-          <input
+          <textarea
             value={description}
             className="description"
             type="text"
-            onChange={(event) => setDescription(event.target.value)}></input><br />
+            rows="10"
+            onChange={(event) => setDescription(event.target.value)}></textarea>
         </div>
         <div className="form-container">
           <label htmlFor="price">Price</label>

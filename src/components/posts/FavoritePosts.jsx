@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const UserPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
+const FavoritePosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
   return (
@@ -42,4 +42,4 @@ const UserPosts = ({ token, setUpdater, updater, posts, setShowAllPosts }) => {
   )
 }
 
-export default UserPosts
+export default FavoritePosts

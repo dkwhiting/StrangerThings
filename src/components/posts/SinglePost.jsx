@@ -3,7 +3,7 @@ import { postMessage, deletePost } from '../../api/posts';
 
 
 
-const SinglePost = ({ token, posts, post, setCurrentPost, setAllPosts }) => {
+const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, index }) => {
   const [newMessage, setNewMessage] = useState('')
   const [currentMessages, setCurrentMessages] = useState(null)
   const [showNewMessage, setShowNewMessage] = useState(false)
@@ -20,7 +20,7 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setAllPosts }) => {
         : difference < 2 ? `${Math.floor(difference)} hour ago`
           : difference < 24 ? `${Math.floor(difference)} hours ago`
             : difference < 48 ? `${Math.floor(difference / 24)} day ago`
-              : 'days ago'
+              : `${Math.floor(difference / 24)} days ago`
     )
   }
 
@@ -28,32 +28,38 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setAllPosts }) => {
     event.preventDefault();
     const postId = event.target.className.split(' ')[2]
     deletePost(token, postId)
-    setAllPosts([...posts])
+    setUpdater(!updater)
   }
 
   const newMessageHandler = async (event, postId) => {
     event.preventDefault();
     if (newMessage != '') {
       await postMessage(token, postId, newMessage);
-      setAllPosts([...posts]);
+      setUpdater(!updater);
       setNewMessage('')
     } else {
       console.log('Can not send blank message')
     }
   }
-
+  const reverseOrder = () => {
+    return posts.length - index
+  }
   const favoriteHandler = () => {
     localStorage.getItem(`${post._id}`)
       ? localStorage.removeItem(`${post._id}`)
       : localStorage.setItem(`${post._id}`, 'favorite')
 
     console.log(localStorage)
+    console.log(index)
+    console.log(posts.length)
 
   }
 
+
+
   return (
-    <div className="single-post" key={post._id}>
-      <div className="post-header">
+    <div className="single-post" key={post._id} style={{ order: posts.length - index }}>
+      <div className="post-header" >
         <div className="post-user">{post.author.username}</div>
         {post.isAuthor
           ? <div className="header-buttons">
@@ -63,8 +69,8 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setAllPosts }) => {
           : <div className="header-buttons">
             {
               favorite
-                ? <i class="fa-solid fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
-                : <i class="fa-regular fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
+                ? <i className="fa-solid fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
+                : <i className="fa-regular fa-star" onClick={() => { favoriteHandler(); setFavorite(!favorite) }}></i>
             }
           </div>}
       </div>

@@ -2,13 +2,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 10px;
 }
 
 .all-posts {
   background-color: darkgrey;
   width: 100%;
   margin: 0;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -16,16 +16,18 @@
   gap: 10px;
 }
 
+.posts-view {
+  width: 100%;
+}
+
 .post-container {
-  padding: 20px;
+  width: 100%;
   display: flex;
-  flex-direction: column-reverse;
   flex-wrap: wrap;
   gap: 20px;
 }
 
 .single-post {
-  min-width: 200px;
   width: 300px;
   padding: 10px;
   background-color: lightgrey;
@@ -33,7 +35,7 @@
   flex-direction: column;
   align-items: flex-start;
   border-radius: 20px;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
 }
 
 .single-post a:hover {
@@ -65,13 +67,47 @@
   opacity: 50%;
 }
 
+#filter-bar {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#filter-bar button {
+  width: 100%
+}
+
 .post-messages {
   align-self: flex-end;
 }
 
 #new-post {
+  width: 400px;
   background-color: lightgrey;
+  padding: 10px;
 }
+
+#new-post form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#new-post form>* {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#new-post label {
+  text-align: left;
+}
+
+#new-post .description {
+  resize: vertical
+}
+
 
 #edit-modal {
   background-color: rgba(0, 0, 0, 0.3);

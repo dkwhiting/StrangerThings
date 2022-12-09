@@ -20,16 +20,36 @@ import { fetchMe } from './api/auth';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState({})
+  const [allMessages, setAllMessages] = useState([])
+  const [sentMessages, setSentMessages] = useState([])
+  const [recievedMessages, setRecievedMessages] = useState([])
 
   useEffect(() => {
     const getMe = async () => {
       const data = await fetchMe(token);
       setUser(data.data)
+      setAllMessages(data.data.messages)
     }
     if (token) {
       getMe();
+
     }
   }, [token])
+
+  useEffect(() => {
+    const getMessages = async () => {
+      const data = await fetchMe(token)
+      setSentMessages(allMessages.filter((message) => message.fromUser._id == user._id))
+      setRecievedMessages(allMessages.filter((message) => message.fromUser._id != user._id))
+      console.log(user)
+      console.log(recievedMessages)
+      console.log(sentMessages)
+    }
+    if (token) {
+      getMessages();
+    }
+  }, [token, user])
+
 
   return (
     <Router>
@@ -47,8 +67,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="profile" element={<Profile token={token} />} />
-            <Route path="messages" element={<Messages token={token} user={user} />} />
-            <Route path="posts" element={<PostsView token={token} />} />
+            <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
+            <Route path="posts/*" element={<PostsView token={token} />} />
 
           </Routes>
         </div>
