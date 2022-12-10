@@ -14,15 +14,17 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
 
   const todaysDate = new Date()
   const createdAt = new Date(post.createdAt)
+  const updatedAt = new Date(post.updatedAt)
 
   const dateDifference = (now, createdAt) => {
     const difference = (now - createdAt) / 1000 / 60 / 60;
     return (
-      difference < 1 ? `${Math.floor(difference * 60)} minutes ago`
-        : difference < 2 ? `${Math.floor(difference)} hour ago`
-          : difference < 24 ? `${Math.floor(difference)} hours ago`
-            : difference < 48 ? `${Math.floor(difference / 24)} day ago`
-              : `${Math.floor(difference / 24)} days ago`
+      difference * 60 < 1 ? `${Math.floor(difference * 60 * 60)} seconds ago`
+        : difference < 1 ? `${Math.floor(difference * 60)} minutes ago`
+          : difference < 2 ? `${Math.floor(difference)} hour ago`
+            : difference < 24 ? `${Math.floor(difference)} hours ago`
+              : difference < 48 ? `${Math.floor(difference / 24)} day ago`
+                : `${Math.floor(difference / 24)} days ago`
     )
   }
 
@@ -49,7 +51,6 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
   }
 
   const favoriteHandler = () => {
-    // debugger
     if (localStorage.getItem('favorites') && favorite && Object.keys(favorite).length > 0) {
       setFavorite((JSON.parse(localStorage.getItem('favorites'))).favorites)
       const copy = [...favorite]
@@ -72,6 +73,7 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
       localStorage.setItem('favorites', JSON.stringify(obj))
       setFavorite((JSON.parse(localStorage.getItem('favorites'))).favorites)
     }
+
   }
 
 
@@ -81,7 +83,9 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
       <div className="post-header" >
         <div className='post-header-left'>
           <div className="post-user">{post.author.username}</div>
-          <div className="post-time">{dateDifference(todaysDate, createdAt)}</div>
+          {createdAt.toString() == updatedAt.toString()
+            ? <div className="post-time">{dateDifference(todaysDate, createdAt)}</div>
+            : <div className="post-time">{`${dateDifference(todaysDate, updatedAt)}(edited)`} </div>}
         </div>
         {post.isAuthor
           ? <div className="header-buttons">
