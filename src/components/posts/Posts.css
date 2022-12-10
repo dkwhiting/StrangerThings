@@ -32,9 +32,16 @@
   background-color: white;
   flex-direction: column;
   align-items: stretch;
-  border-radius: 20px;
+  border-radius: 20px 0 20px 20px;
   flex: 1 0 auto;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
+}
+
+.single-post>* {
+  display: flex;
+  flex-wrap: nowrap;
+
+
 }
 
 .single-post a:hover {
@@ -68,6 +75,10 @@
   display: flex;
   justify-content: space-between;
   border-radius: 20px 0;
+}
+
+.post-title {
+  text-align: left;
 }
 
 .post-user,
@@ -118,12 +129,14 @@
 }
 
 #filter-bar {
-  padding: 10px 0 0 0;
   width: 200px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.205);
   flex: 0 0 auto;
+  position: relative;
+  top: -50px;
+  border-radius: 0 0 15px 0;
 }
 
 #filter-bar .nav-link {
@@ -146,7 +159,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  box-shadow: -4px 6px 7px 0 rgba(0, 0, 0, 0.205);
+  box-shadow: -4px 3px 7px 0 rgba(0, 0, 0, 0.205);
 }
 
 #search-box label {
@@ -165,11 +178,23 @@
 #new-post {
   width: 400px;
   background-color: white;
-  padding: 20px 10px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.205);
+  border-radius: 20px 0 20px 20px;
+  position: relative;
+  top: -50px;
+}
+
+#new-post .new-post-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: rgb(232, 232, 232);
+  border-radius: 20px 0;
 }
 
 #new-post form {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;

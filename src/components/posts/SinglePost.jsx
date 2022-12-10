@@ -26,10 +26,10 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
     )
   }
 
-  const deleteHandler = (event) => {
+  const deleteHandler = async (event) => {
     event.preventDefault();
     const postId = event.target.className.split(' ')[2]
-    deletePost(token, postId)
+    await deletePost(token, postId)
     setUpdater(!updater)
   }
 
@@ -101,8 +101,8 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
         <div className="post-price">{post.price}</div>
         <div className="post-title">{post.title}</div>
         <div className="post-description">{post.description}</div>
-        <div className="post-location">{post.location}</div>
-        <div className="will-deliver">{post.willDeliver}</div>
+        {post.location != '[On Request]' ? <div className="post-location">{post.location}</div> : <></>}
+        <div className="will-deliver">{post.willDeliver ? 'Delivery available' : 'Delivery not available'}</div>
         {post.isAuthor
           ? <div className="show-messages">
             <a onClick={() => {

@@ -9,16 +9,14 @@ const Navbar = () => {
         to="profile"
         className="nav-button"
         style={({ isActive }) => ({
-          color: isActive ? '#888' : '#ffffff',
-          background: isActive ? '#ffffff' : '#888'
+          background: isActive ? 'rgb(217, 231, 255)' : ''
         })}>
         Profile</NavLink>
       <NavLink
         to="posts"
         className="nav-button"
         style={({ isActive }) => ({
-          color: isActive ? '#888' : '#fff',
-          background: isActive ? '#ffffff' : '#888'
+          background: isActive ? 'rgb(217, 231, 255)' : ''
         })}>
         Posts
       </NavLink>
@@ -26,8 +24,7 @@ const Navbar = () => {
         to="messages"
         className="nav-button"
         style={({ isActive }) => ({
-          color: isActive ? '#888' : '#ffffff',
-          background: isActive ? '#ffffff' : '#888'
+          background: isActive ? 'rgb(217, 231, 255)' : ''
         })}>
         Messages</NavLink>
     </div >

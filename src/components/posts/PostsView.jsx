@@ -1,6 +1,6 @@
 import "./Posts.css";
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchPosts } from "../../api/posts";
 import NewPost from './NewPost'
@@ -53,7 +53,7 @@ const PostsView = ({ token }) => {
         />
         <div className="posts-view">
           <Routes>
-
+            <Route index element={<Navigate to="all" replace={true} />} />
             <Route path="all" element={<AllPosts
               token={token}
               posts={posts}
@@ -91,6 +91,7 @@ const PostsView = ({ token }) => {
           </Routes>
         </div>
         <NewPost token={token} posts={posts} setUpdater={setUpdater} />
+        <Outlet />
       </div >
       : <></>
   )

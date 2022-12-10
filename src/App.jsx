@@ -2,19 +2,17 @@ import "./App.css";
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
-  RouterProvider,
   Route,
   Routes,
-  Link,
 } from "react-router-dom"
 
-import Register from './components/Register';
 import Home from './components/Home'
 import Profile from './components/Profile'
 import PostsView from "./components/posts/PostsView";
 import Messages from "./components/Messages";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Header from "./components/Header"
 import { fetchMe } from './api/auth';
 
 function App() {
@@ -34,6 +32,7 @@ function App() {
       getMe();
 
     }
+    console.log(user)
   }, [token])
 
   useEffect(() => {
@@ -52,12 +51,7 @@ function App() {
     <Router>
       <div className="App">
 
-        <div className="header">
-          <h2>Logo</h2>
-          {token
-            ? <h2>Welcome, {user?.username}</h2>
-            : <Register token={token} setToken={setToken} />}
-        </div>
+        <Header token={token} user={user} setUser={setUser} setToken={setToken} />
         <Navbar />
 
         <div className="content">

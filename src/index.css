@@ -1,9 +1,12 @@
 html {
   overflow-y: scroll;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 * {
   box-sizing: border-box;
+
 }
 
 :root {

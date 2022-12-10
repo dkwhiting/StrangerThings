@@ -28,7 +28,9 @@ export const newPost = async (token, title, description, price, location, willDe
         post: {
           title,
           description,
-          price
+          price,
+          location,
+          willDeliver
         }
       })
     })
