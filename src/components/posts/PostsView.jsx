@@ -12,13 +12,15 @@ import FavoritePosts from "./FavoritePosts";
 const PostsView = ({ token }) => {
   const [posts, setPosts] = useState([])
   const [updater, setUpdater] = useState(true)
+  const [searchActive, setSearchActive] = useState(false)
+  const [userSearch, setUserSearch] = useState('')
+  const [descriptionSearch, setDescriptionSearch] = useState('')
   const [favorite, setFavorite] = useState(() => {
     return localStorage.getItem('favorites')
       ? JSON.parse(localStorage.getItem('favorites')).favorites
       : []
   }
   )
-  const [postIndex, setPostIndex] = useState(null)
 
 
   useEffect(() => {
@@ -42,6 +44,12 @@ const PostsView = ({ token }) => {
         <FilterBar
           setUpdater={setUpdater}
           updater={updater}
+          searchActive={searchActive}
+          setSearchActive={setSearchActive}
+          userSearch={userSearch}
+          setUserSearch={setUserSearch}
+          descriptionSearch={descriptionSearch}
+          setDescriptionSearch={setDescriptionSearch}
         />
         <div className="posts-view">
           <Routes>
@@ -53,8 +61,10 @@ const PostsView = ({ token }) => {
               updater={updater}
               favorite={favorite}
               setFavorite={setFavorite}
-              postIndex={postIndex}
-              setPostIndex={setPostIndex} />} />
+              searchActive={searchActive}
+              setSearchActive={setSearchActive}
+              userSearch={userSearch}
+              descriptionSearch={descriptionSearch} />} />
             <Route path="user" element={<UserPosts
               token={token}
               posts={posts}
@@ -62,8 +72,10 @@ const PostsView = ({ token }) => {
               updater={updater}
               favorite={favorite}
               setFavorite={setFavorite}
-              postIndex={postIndex}
-              setPostIndex={setPostIndex} />} />
+              searchActive={searchActive}
+              setSearchActive={setSearchActive}
+              userSearch={userSearch}
+              descriptionSearch={descriptionSearch} />} />
             <Route path="favorites" element={<FavoritePosts
               token={token}
               posts={posts}
@@ -71,8 +83,10 @@ const PostsView = ({ token }) => {
               updater={updater}
               favorite={favorite}
               setFavorite={setFavorite}
-              postIndex={postIndex}
-              setPostIndex={setPostIndex} />} />
+              searchActive={searchActive}
+              setSearchActive={setSearchActive}
+              userSearch={userSearch}
+              descriptionSearch={descriptionSearch} />} />
 
           </Routes>
         </div>

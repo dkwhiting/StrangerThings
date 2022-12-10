@@ -42,6 +42,14 @@
   cursor: pointer;
 }
 
+.single-post .new-message {
+  width: 100%;
+}
+
+.single-post .new-message input {
+  width: 80%;
+}
+
 .post-body {
   width: 100%;
   padding: 10px;
@@ -75,6 +83,7 @@
   display: flex;
 }
 
+
 .post-header i {
   color: white;
   display: flex;
@@ -95,6 +104,10 @@
   color: gold;
 }
 
+.post-header i:hover {
+  opacity: .7;
+}
+
 .post-header-left {
   display: flex;
   flex-direction: column;
@@ -105,17 +118,44 @@
 }
 
 #filter-bar {
-  padding: 10px 10px 10px 0;
-  width: 300px;
+  padding: 10px 0 0 0;
+  width: 200px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
-
+  flex: 0 0 auto;
 }
 
-#filter-bar button {
+#filter-bar .nav-link {
   width: 100%;
   border-radius: 0 15px 15px 0;
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: .9em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#filter-bar .nav-link:hover {
+  background-color: rgb(217, 231, 255)
+}
+
+#search-box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: -4px 6px 7px 0 rgba(0, 0, 0, 0.205);
+}
+
+#search-box label {
+  text-align: left;
+}
+
+#search-box textarea {
+
+  resize: none;
 }
 
 .post-messages {
@@ -141,8 +181,15 @@
   flex-direction: column;
 }
 
+
+
 #new-post label {
   text-align: left;
+}
+
+#new-post form button {
+  display: flex;
+  align-items: center;
 }
 
 #new-post .description {

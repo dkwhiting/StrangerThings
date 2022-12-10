@@ -1,14 +1,57 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom"
 
-const FilterBar = ({ setUpdater, updater, }) => {
+const FilterBar = ({
+  setUpdater,
+  updater,
+  searchActive,
+  setSearchActive,
+  userSearch,
+  setUserSearch,
+  descriptionSearch,
+  setDescriptionSearch }) => {
+
+
 
   return (
     <div id="filter-bar">
-      <NavLink to="all"><button onClick={() => setUpdater(!updater)}>All Posts</button></NavLink>
-      <NavLink to="user"><button onClick={() => setUpdater(!updater)}>Your Posts</button></NavLink>
-      <NavLink to="favorites"><button onClick={() => setUpdater(!updater)}>Favorites</button></NavLink>
+      <NavLink
+        to="all"
+        className="nav-link"
+        onClick={() =>
+          setUpdater(!updater)}
+        style={({ isActive }) => ({
+          color: isActive ? '#000' : '#000',
+          background: isActive ? 'rgb(217, 231, 255)' : ''
+        })}>All Posts</NavLink>
 
+      <NavLink
+        to="user"
+        className="nav-link"
+        onClick={() =>
+          setUpdater(!updater)}
+        style={({ isActive }) => ({
+          color: isActive ? '#000' : '#000',
+          background: isActive ? 'rgb(217, 231, 255)' : ''
+        })}>Your Posts</NavLink>
+      <NavLink
+        to="favorites"
+        className="nav-link"
+        onClick={() => setUpdater(!updater)}
+        style={({ isActive }) => ({
+          color: isActive ? '#000' : '#000',
+          background: isActive ? 'rgb(217, 231, 255)' : ''
+        })}>Favorites</NavLink>
+      <button onClick={() => setSearchActive(!searchActive)}>Search</button>
+      {searchActive
+        ? <div id='search-box'>
+          <label htmlFor="user">User</label>
+          <input value={userSearch} type="text" onChange={(event) => { setUserSearch(event.target.value); setUpdater(!updater) }} />
+          <label htmlFor="description">Description</label>
+          <textarea value={descriptionSearch} type="text" rows="6" onChange={(event) => { setDescriptionSearch(event.target.value); setUpdater(!updater); console.log(descriptionSearch) }} />
+        </div>
+        : <></>
+      }
     </div>
   )
 }

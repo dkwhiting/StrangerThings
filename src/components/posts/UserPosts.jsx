@@ -34,9 +34,7 @@ const UserPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, p
                     setUpdater={setUpdater} updater={updater}
                     index={index}
                     favorite={favorite}
-                    setFavorite={setFavorite}
-                    postIndex={postIndex}
-                    setPostIndex={setPostIndex} />
+                    setFavorite={setFavorite} />
                 )
               })
             : <p>You have no posts!</p>

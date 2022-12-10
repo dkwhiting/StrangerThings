@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const AllPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex }) => {
+const AllPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, userSearch, descriptionSearch }) => {
   const [currentPost, setCurrentPost] = useState(null)
 
   return (
@@ -21,22 +21,23 @@ const AllPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, po
           : <></>}
       <div className="post-container">
         {
-          posts.map((post, index) => {
-            return (
-              <SinglePost
-                key={post._id}
-                token={token}
-                posts={posts}
-                post={post}
-                setCurrentPost={setCurrentPost}
-                setUpdater={setUpdater} updater={updater}
-                index={index}
-                favorite={favorite}
-                setFavorite={setFavorite}
-                postIndex={postIndex}
-                setPostIndex={setPostIndex} />
-            )
-          })
+          posts.filter(post => post.author.username.toLowerCase().includes(userSearch.toLowerCase()))
+            .filter(post => post.description.toLowerCase().includes(descriptionSearch.toLowerCase()) || post.title.toLowerCase().includes(descriptionSearch.toLowerCase()))
+            .map((post, index) => {
+              return (
+                <SinglePost
+                  key={post._id}
+                  token={token}
+                  posts={posts}
+                  post={post}
+                  setCurrentPost={setCurrentPost}
+                  setUpdater={setUpdater} updater={updater}
+                  index={index}
+                  favorite={favorite}
+                  setFavorite={setFavorite}
+                />
+              )
+            })
         }
       </div>
       <Outlet />
