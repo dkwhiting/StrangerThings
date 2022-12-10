@@ -45,11 +45,13 @@ const EditPost = ({ token, currentPost, setCurrentPost, setUpdater, updater }) =
           </div>
           <div className="form-container">
             <label htmlFor="description">Description</label>
-            <input
+            <textarea
               value={currentDescription}
               className="description"
               type="text"
-              onChange={(event) => setCurrentDescription(event.target.value)}></input><br />
+              rows="6"
+              columns="20"
+              onChange={(event) => setCurrentDescription(event.target.value)}></textarea><br />
           </div>
           <div className="form-container">
             <label htmlFor="price">Price</label>
@@ -59,8 +61,10 @@ const EditPost = ({ token, currentPost, setCurrentPost, setUpdater, updater }) =
               type="text"
               onChange={(event) => setCurrentPrice(event.target.value)}></input>
           </div>
-
-          <button type="submit">Submit</button>
+          <div className="edit-buttons">
+            <button type="submit">Submit</button>
+            <button>Close</button>
+          </div>
         </form>
       </div>
     </div>

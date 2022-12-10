@@ -1,5 +1,4 @@
 .messages {
-  background-color: lightgray;
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -9,7 +8,16 @@
 
 .messages-header {
   display: flex;
+  width: 100%;
   justify-content: center;
+}
+
+.messages-header button {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .all-messages {

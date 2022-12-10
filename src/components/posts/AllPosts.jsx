@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Outlet } from "react-router-dom";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
@@ -39,6 +39,7 @@ const AllPosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, po
           })
         }
       </div>
+      <Outlet />
     </div >
   )
 }

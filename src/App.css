@@ -20,6 +20,22 @@
   padding: 0 20px;
 }
 
+#navbar {
+  background-color: rgb(184, 184, 184);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 35px;
+}
+
+.nav-button {
+  padding: 5px 10px;
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 .content {
   width: 100%;
   display: flex;
@@ -27,6 +43,24 @@
   align-items: stretch;
 }
 
+/* //Profile// */
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/*              */
 .logo {
   height: 6em;
   padding: 1.5em;

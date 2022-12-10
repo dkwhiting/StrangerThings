@@ -1,14 +1,36 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom"
+import { Routes, Route, Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
 
   return (
     <div id="navbar">
-      <NavLink to="profile" className={isActive => "nav-link" + (!isActive ? "unselected" : "")}><button>Profile</button></NavLink>
-      <NavLink to="posts"><button>Posts</button></NavLink>
-      <NavLink to="messages"><button>Messages</button></NavLink>
-    </div>
+      <NavLink
+        to="profile"
+        className="nav-button"
+        style={({ isActive }) => ({
+          color: isActive ? '#888' : '#ffffff',
+          background: isActive ? '#ffffff' : '#888'
+        })}>
+        Profile</NavLink>
+      <NavLink
+        to="posts"
+        className="nav-button"
+        style={({ isActive }) => ({
+          color: isActive ? '#888' : '#fff',
+          background: isActive ? '#ffffff' : '#888'
+        })}>
+        Posts
+      </NavLink>
+      <NavLink
+        to="messages"
+        className="nav-button"
+        style={({ isActive }) => ({
+          color: isActive ? '#888' : '#ffffff',
+          background: isActive ? '#ffffff' : '#888'
+        })}>
+        Messages</NavLink>
+    </div >
   )
 }
 

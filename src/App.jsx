@@ -41,9 +41,6 @@ function App() {
       const data = await fetchMe(token)
       setSentMessages(allMessages.filter((message) => message.fromUser._id == user._id))
       setRecievedMessages(allMessages.filter((message) => message.fromUser._id != user._id))
-      console.log(user)
-      console.log(recievedMessages)
-      console.log(sentMessages)
     }
     if (token) {
       getMessages();
@@ -66,7 +63,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="profile" element={<Profile token={token} />} />
+            <Route path="profile" element={<Profile token={token} user={user} sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
             <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
             <Route path="posts/*" element={<PostsView token={token} />} />
 
