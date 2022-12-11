@@ -70,12 +70,14 @@ const NewPost = ({ token, posts, setUpdater, updater }) => {
             onChange={(event) => setLocation(event.target.value)}></input>
         </div>
         <div className="form-container">
-          <label htmlFor="location">Will Deliver?</label>
-          <input
-            checked={willDeliver}
-            className="location"
-            type="checkbox"
-            onChange={(event) => { setWillDeliver(event.target.checked) }}></input>
+          <div className="delivery">
+            <label htmlFor="will-deliver">Will Deliver?</label>
+            <input
+              checked={willDeliver}
+              className="will-deliver"
+              type="checkbox"
+              onChange={(event) => { setWillDeliver(event.target.checked) }}></input>
+          </div>
         </div>
 
         <button type="submit">Submit</button>

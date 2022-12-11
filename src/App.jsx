@@ -4,6 +4,8 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  NavLink,
+  Navigate
 } from "react-router-dom"
 
 import Home from './components/Home'
@@ -19,9 +21,11 @@ import { fetchMe } from './api/auth';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState({})
+  const [updater, setUpdater] = useState(true)
   const [allMessages, setAllMessages] = useState([])
   const [sentMessages, setSentMessages] = useState([])
   const [recievedMessages, setRecievedMessages] = useState([])
+  const [guestLogin, setGuestLogin] = useState(false)
 
   useEffect(() => {
     const getMe = async () => {
@@ -54,30 +58,25 @@ function App() {
 
         <Header token={token} user={user} setUser={setUser} setToken={setToken} />
 
-        {token
+        <div className="content">
 
-          ? <>
-            <div className="content">
-              <Navbar />
-              <Routes>
-                <Route exact path="/" element={<Home user={user} />} />
-                <Route path="profile" element={<Profile token={token} user={user} sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
-                <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
-                <Route path="posts/*" element={<PostsView token={token} />} />
+          <Navbar token={token} />
+          <Routes>
+            <Route path="/*" element={<Home user={user} token={token} setToken={setToken} guestLogin={guestLogin} setGuestLogin={setGuestLogin} updater={setUpdater} setUpdater={setUpdater} />} />
+            <Route path="posts/*" element={<PostsView token={token} guestLogin={guestLogin} updater={updater} setUpdater={setUpdater} />} />
+            {token ? <Route path="profile" element={<Profile token={token} user={user} sentMessages={sentMessages} recievedMessages={recievedMessages} />} /> : <></>}
+            {token ? <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} /> : <></>}
 
-              </Routes>
-            </div>
+          </Routes>
+        </div>
 
-            <div className="footer">
-              <Footer setUser={setUser} setToken={setToken} />
-            </div>
-          </>
-          : <div className="register-container">
-            <Register token={token} setToken={setToken} />
-          </div>
-        }
+        <div className="footer">
+          <Footer setUser={setUser} setToken={setToken} />
+        </div>
+
+
       </div>
-    </Router>
+    </Router >
   )
 }
 

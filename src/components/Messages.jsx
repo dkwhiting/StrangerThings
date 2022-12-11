@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const Messages = ({ sentMessages, recievedMessages }) => {
   const [toggleView, setToggleView] = useState(true);
 
+
   return (
     <div className="messages">
       <h2>Messages</h2>
@@ -28,6 +29,7 @@ const Messages = ({ sentMessages, recievedMessages }) => {
                 )
               })
               : sentMessages.map((message, i) => {
+                console.dir(message)
                 return (
                   <div className="single-message" key={i}>
                     <div className="message-username">{message.fromUser.username}</div>

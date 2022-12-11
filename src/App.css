@@ -22,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  flex: 0 0 auto;
 }
 
 .header h2 {
@@ -42,6 +43,17 @@
   gap: 8px;
 }
 
+.header .login {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.header .login:hover {
+  background-color: rgba(0, 0, 0, 0.159);
+  color: white;
+}
+
 .header .header-username {
   display: flex;
   gap: 10px;
@@ -49,11 +61,12 @@
 
 .header .dropdown {
 
-  width: 100px;
+  width: 200px;
   color: black;
   background-color: white;
   position: absolute;
   top: 40px;
+  right: 20px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
   z-index: 999;
   text-align: left;
@@ -67,6 +80,10 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.dropdown button {
+  width: 100%;
 }
 
 .header .right i:hover {
@@ -91,6 +108,7 @@
   gap: 30px;
   height: 50px;
   margin: 0;
+  flex: 0 0 auto;
 }
 
 #navbar .nav-button {
@@ -105,10 +123,60 @@
 }
 
 .content {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
+}
+
+.content .home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.home .home-register {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.register form {
+  background-color: rgb(126, 155, 126);
+  padding: 20px;
+  border-radius: 20px;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.3);
+}
+
+.register form input {
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+.register-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* //Profile// */
@@ -119,12 +187,21 @@
 }
 
 .profile {
+  height: 100%;
   display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.left {
+.profile .left {
+  width: 200px;
   display: flex;
   flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.profile .right {
+  flex: 1 1 auto;
 }
 
 
@@ -132,11 +209,16 @@
 
 .footer {
   width: 100%;
-  background-color: rgb(126, 155, 126);
   color: white;
   text-align: right;
   position: fixed;
   bottom: 0;
+}
+
+.footer button {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .logo {

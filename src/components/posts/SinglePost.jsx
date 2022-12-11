@@ -92,14 +92,16 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
             <i className={`fa-solid fa-pen-to-square ${post._id}`} onClick={() => { setCurrentPost(post) }}></i>
             <i className={`fa-solid fa-trash-can ${post._id}`} onClick={deleteHandler}></i>
           </div>
-          : <div className="header-buttons">
+          : token ? <div className="header-buttons">
             {
               favorite && favorite.includes(post._id)
                 ? <i className="active fa-solid fa-star" onClick={favoriteHandler}></i>
                 : <i className="inactive fa-regular fa-star" onClick={favoriteHandler}></i>
             }
 
-          </div>}
+          </div>
+            : <></>
+        }
       </div>
       <div className="post-body">
         <div className="post-price">{post.price}</div>
@@ -115,13 +117,14 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
               setNewMessage('')
             }
             }>{post.messages.length} messages</a></div>
-          : <div className="send-message">
+          : token ? <div className="send-message">
             <a onClick={() => {
               setShowNewMessage(!showNewMessage);
               setCurrentMessages(currentMessages == post._id ? null : post._id);
               setNewMessage('')
             }}>Send Message</a>
           </div>
+            : <></>
 
         }
         {showMessages && post.isAuthor
@@ -130,7 +133,7 @@ const SinglePost = ({ token, posts, post, setCurrentPost, setUpdater, updater, i
               return (
                 <div key={`${post._id}-${message._id}`} className="messages-view">
                   <div className="all-messages">
-                    {message.fromUser.username}
+                    From {message.fromUser.username}: &nbsp;
                     {message.content}
                   </div>
                 </div>

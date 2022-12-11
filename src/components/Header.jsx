@@ -42,16 +42,21 @@ const Header = ({ token, user, setUser, setToken }) => {
                   style={({ isActive }) => ({
                     background: isActive ? 'rgb(217, 231, 255)' : ''
                   })}>
-                  Profile</NavLink></li>
-                <li><button onClick={logoutHandler}>Logout</button></li>
-                <li>Dark Mode</li>
+                  <button>Profile</button></NavLink></li>
+                <li><NavLink
+                  to="home"
+                  className="nav-button"
+                  style={({ isActive }) => ({
+                    background: isActive ? 'rgb(217, 231, 255)' : ''
+                  })}>
+                  <button onClick={logoutHandler}>Logout</button></NavLink></li>
               </ul>
             </div>
             : <></>}
         </div>
 
 
-        : <></>}
+        : <NavLink className="login" to="home">Login</NavLink>}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditPost from "./EditPost";
 import SinglePost from "./SinglePost";
 
-const FavoritePosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex }) => {
+const FavoritePosts = ({ token, setUpdater, updater, posts, favorite, setFavorite, postIndex, setPostIndex, userSearch, descriptionSearch }) => {
   const [currentPost, setCurrentPost] = useState(null)
   return (
     <div className="all-posts">
@@ -22,6 +22,8 @@ const FavoritePosts = ({ token, setUpdater, updater, posts, favorite, setFavorit
         {
           favorite && favorite.length > 0
             ? posts.filter(post => favorite.includes(post._id))
+              .filter(post => post.author.username.toLowerCase().includes(userSearch.toLowerCase()))
+              .filter(post => post.description.toLowerCase().includes(descriptionSearch.toLowerCase()) || post.title.toLowerCase().includes(descriptionSearch.toLowerCase()))
               .map((post, index) => {
                 return (
                   <SinglePost

@@ -39,8 +39,10 @@ const Register = ({ setToken, token }) => {
             <form onSubmit={submitHandler}>
               <input value={username} type="text" placeholder="username" onChange={(event) => setUsername(event.target.value)}></input>
               <input value={password} type="password" placeholder="password" onChange={(event) => setPassword(event.target.value)}></input>
-              <button type="submit" onClick={() => setLoginToggle(true)}>Login</button>
-              <button type="submit" onClick={() => setLoginToggle(false)}>Register</button>
+              <div className="register-buttons">
+                <button type="submit" onClick={() => setLoginToggle(true)}>Login</button>
+                <button type="submit" onClick={() => setLoginToggle(false)}>Register</button>
+              </div>
             </form>
           </div>
           : <></>

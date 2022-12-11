@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom"
 
 const FilterBar = ({
+  token,
   setUpdater,
   updater,
   searchActive,
@@ -25,23 +26,28 @@ const FilterBar = ({
           background: isActive ? 'rgb(217, 231, 255)' : ''
         })}>All Posts</NavLink>
 
-      <NavLink
-        to="user"
-        className="nav-link"
-        onClick={() =>
-          setUpdater(!updater)}
-        style={({ isActive }) => ({
-          color: isActive ? '#000' : '#000',
-          background: isActive ? 'rgb(217, 231, 255)' : ''
-        })}>Your Posts</NavLink>
-      <NavLink
-        to="favorites"
-        className="nav-link"
-        onClick={() => setUpdater(!updater)}
-        style={({ isActive }) => ({
-          color: isActive ? '#000' : '#000',
-          background: isActive ? 'rgb(217, 231, 255)' : ''
-        })}>Favorites</NavLink>
+      {token
+        ? <><NavLink
+          to="user"
+          className="nav-link"
+          onClick={() =>
+            setUpdater(!updater)}
+          style={({ isActive }) => ({
+            color: isActive ? '#000' : '#000',
+            background: isActive ? 'rgb(217, 231, 255)' : ''
+          })}>Your Posts</NavLink>
+          <NavLink
+            to="favorites"
+            className="nav-link"
+            onClick={() => setUpdater(!updater)}
+            style={({ isActive }) => ({
+              color: isActive ? '#000' : '#000',
+              background: isActive ? 'rgb(217, 231, 255)' : ''
+            })}>Favorites</NavLink></>
+        : <></>
+      }
+
+
       <button onClick={() => setSearchActive(!searchActive)}>Search</button>
       {searchActive
         ? <div id='search-box'>
