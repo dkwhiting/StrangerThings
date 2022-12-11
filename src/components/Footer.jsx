@@ -1,16 +1,34 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 
 const Footer = ({ setUser, setToken }) => {
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setShowBackToTop(true)
+      } else {
+        setShowBackToTop(false)
+      }
+    })
+  }, [])
+
+
 
   const clickHandler = () => {
-    localStorage.removeItem('token')
-    setToken('')
-    setUser('')
-    console.log("hello")
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 
   return (
-    <button onClick={clickHandler}>Logout</button>
+    <div>
+      {showBackToTop
+        ? <button onClick={() => clickHandler()}>Return to top of page</button>
+        : <></>}
+    </div>
   )
 }
 

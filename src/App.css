@@ -8,6 +8,8 @@
 }
 
 .App {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -28,15 +30,55 @@
   font-size: 36px;
 }
 
+.header h3 {
+  margin: 0;
+}
+
 .header .right {
   color: white;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
+.header .header-username {
+  display: flex;
+  gap: 10px;
+}
+
+.header .dropdown {
+
+  width: 100px;
+  color: black;
+  background-color: white;
+  position: absolute;
+  top: 40px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.205);
+  z-index: 999;
+  text-align: left;
+  padding: 5px;
+}
+
+.dropdown ul,
+.dropdown li {
+  width: 100%;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 .header .right i:hover {
   opacity: .7;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
 }
 
 #navbar {
@@ -87,6 +129,16 @@
 
 
 /*              */
+
+.footer {
+  width: 100%;
+  background-color: rgb(126, 155, 126);
+  color: white;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

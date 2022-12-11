@@ -13,6 +13,7 @@ import Messages from "./components/Messages";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header"
+import Register from "./components/Register";
 import { fetchMe } from './api/auth';
 
 function App() {
@@ -52,21 +53,29 @@ function App() {
       <div className="App">
 
         <Header token={token} user={user} setUser={setUser} setToken={setToken} />
-        <Navbar />
 
-        <div className="content">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="profile" element={<Profile token={token} user={user} sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
-            <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
-            <Route path="posts/*" element={<PostsView token={token} />} />
+        {token
 
-          </Routes>
-        </div>
+          ? <>
+            <div className="content">
+              <Navbar />
+              <Routes>
+                <Route exact path="/" element={<Home user={user} />} />
+                <Route path="profile" element={<Profile token={token} user={user} sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
+                <Route path="messages" element={<Messages sentMessages={sentMessages} recievedMessages={recievedMessages} />} />
+                <Route path="posts/*" element={<PostsView token={token} />} />
 
-        <div className="footer">
-          <Footer setUser={setUser} setToken={setToken} />
-        </div>
+              </Routes>
+            </div>
+
+            <div className="footer">
+              <Footer setUser={setUser} setToken={setToken} />
+            </div>
+          </>
+          : <div className="register-container">
+            <Register token={token} setToken={setToken} />
+          </div>
+        }
       </div>
     </Router>
   )
