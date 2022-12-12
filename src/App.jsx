@@ -15,7 +15,6 @@ import Messages from "./components/Messages";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header"
-import Register from "./components/Register";
 import { fetchMe } from './api/auth';
 
 function App() {

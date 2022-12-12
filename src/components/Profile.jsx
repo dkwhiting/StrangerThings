@@ -1,5 +1,5 @@
 import React from "react";
-import photo from '../images/profile.png'
+
 import Messages from "./Messages";
 
 const Profile = ({ user, sentMessages, recievedMessages }) => {
@@ -7,7 +7,7 @@ const Profile = ({ user, sentMessages, recievedMessages }) => {
   return (
     <div className="profile">
       <div className="left">
-        <img className="photo" src={photo} />
+        <div className="photo"></div>
         {user.username}
       </div>
       <div className="right">
