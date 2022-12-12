@@ -14,8 +14,6 @@ const Footer = ({ setUser, setToken }) => {
     })
   }, [])
 
-
-
   const clickHandler = () => {
     window.scrollTo({
       top: 0,

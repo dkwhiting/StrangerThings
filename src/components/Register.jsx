@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { registerUser, loginUser } from '../api/auth'
 
-const Register = ({ setToken, token }) => {
+const Register = ({ setToken, token, guestLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginToggle, setLoginToggle] = useState(false)
@@ -31,7 +31,7 @@ const Register = ({ setToken, token }) => {
   return (
     <div>
       {
-        !token
+        !token || !guestLogin
           ?
           <div className='register'>
             <h2>Please register or sign in</h2>
