@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/StrangerThings/static/css/main.cdd27e8d.css",
+    "main.js": "/StrangerThings/static/js/main.5713ee31.js",
+    "index.html": "/StrangerThings/index.html",
+    "main.cdd27e8d.css.map": "/StrangerThings/static/css/main.cdd27e8d.css.map",
+    "main.5713ee31.js.map": "/StrangerThings/static/js/main.5713ee31.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cdd27e8d.css",
+    "static/js/main.5713ee31.js"
+  ]
+}
