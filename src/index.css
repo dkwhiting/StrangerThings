@@ -6,7 +6,8 @@ html {
 
 * {
   box-sizing: border-box;
-
+  background-color: white;
+  color: black
 }
 
 :root {
@@ -77,6 +78,7 @@ button:focus,
 button:focus-visible {
   background-color: rgb(217, 231, 255);
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
