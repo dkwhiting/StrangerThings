@@ -1,6 +1,5 @@
 {
-  "name": "strangers-things-starter",
-  "private": true,
+  "name": "strangers-things",
   "homepage": "http://dkwhiting.github.io/StrangerThings",
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "-": "^0.0.1",
